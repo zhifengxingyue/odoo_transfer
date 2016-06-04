@@ -869,21 +869,23 @@ Domains
 In Odoo, Domains are values that encode conditions on records. A domain is a list of criteria used to select a subset of a model's records. Each criteria is a triple with a field name, an operator and a value.
 在Odoo，域是设置字段条件的值。域是一系列标准，用来选择一个模块字段的子集。每个规则由三部分组成，包括字段名称，运算符和值。
 For instance, when used on the Product model the following domain selects all services with a unit price over 1000:
-例如，在产品型号使用时以下域选择具有单价超过1000的所有服务：
+例如，在产品型号使用时，以下域选择具有单价超过1000的所有服务：
 [('product_type', '=', 'service'), ('unit_price', '>', 1000)]
 By default criteria are combined with an implicit AND. The logical operators & (AND), | (OR) and ! (NOT) can be used to explicitly combine criteria. They are used in prefix position (the operator is inserted before its arguments rather than between). For instance to select products "which are services OR have a unit price which is NOT between 1000 and 2000":
-
+默认情况下的标准是结合是隐含的AND。逻辑运算符与（AND），| （OR）和！ （不）可被用于显式结合标准。它们在前缀位置使用（操作插入它的参数之前，而不是之间）。比如选择产品“，这是服务还是有单价这是不是1000年至2000年”：
 ['|',
     ('product_type', '=', 'service'),
     '!', '&',
         ('unit_price', '>=', 1000),
         ('unit_price', '<', 2000)]
 A domain parameter can be added to relational fields to limit valid records for the relation when trying to select records in the client interface.
-
+当试图在客户端接口选择字段时，域参数可以被添加到关系字段来限制关系的有效记录。
 Exercise
-
+练习
 Domains on relational fields
+域在关系字段
 When selecting the instructor for a Session, only instructors (partners with instructor set to True) should be visible.
+当为一个会议选择导师，只有导师（为导师的伙伴设置为True）应该是可见的。
 openacademy/models.py
     duration = fields.Float(digits=(6, 2), help="Duration in days")
     seats = fields.Integer(string="Number of seats")
@@ -897,11 +899,16 @@ Note
 
 A domain declared as a literal list is evaluated server-side and can't refer to dynamic values on the right-hand side, a domain declared as a string is evaluated client-side and allows field names on the right-hand side
 Exercise
+被声明为一个文本列表的域被评估为服务器端，并且不能在右侧的动态值，一个域声明为一个字符串被评估的客户端，并允许在右侧的字段名称
 
 More complex domains
+更复杂的域
 Create new partner categories Teacher / Level 1 and Teacher / Level 2. The instructor for a session can be either an instructor or a teacher (of any level).
+创建新的合作伙伴类别教师/ 1级和教师/级2。教师的一个会话可以是一个教师或教师（任何级别）。
 Modify the Session model's domain
+修改会议模型的域
 Modify openacademy/view/partner.xml to get access to Partner categories:
+修改openacademy /view/ partner.xml获得伙伴类别：
 openacademy/models.py
     seats = fields.Integer(string="Number of seats")
 
