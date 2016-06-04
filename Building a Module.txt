@@ -904,7 +904,7 @@ Exercise
 More complex domains
 更复杂的域
 Create new partner categories Teacher / Level 1 and Teacher / Level 2. The instructor for a session can be either an instructor or a teacher (of any level).
-创建新的合作伙伴类别教师/ 1级和教师/级2。教师的一个会话可以是一个教师或教师（任何级别）。
+创建新的合作伙伴类别教师/ 1级和教师/级2。一个会议的导师可以是一个导师或教师（任何级别）。
 Modify the Session model's domain
 修改会议模型的域
 Modify openacademy/view/partner.xml to get access to Partner categories:
@@ -941,15 +941,25 @@ openacademy/views/partner.xml
     </data>
 </openerp>
 Computed fields and default values
+计算字段和默认值
+
 So far fields have been stored directly in and retrieved directly from the database. Fields can also be computed. In that case, the field's value is not retrieved from the database but computed on-the-fly by calling a method of the model.
+到目前为止字段已被直接存储在并直接从数据库中检索。字段也可以被计算出来。在这种情况下，该字段的值不从数据库中检索，但通过调用模型的方法来即时计算。
 
 To create a computed field, create a field and set its attribute compute to the name of a method. The computation method should simply set the value of the field to compute on every record in self.
+创建一个计算字段，创建一个字段，并将它的属性设置为一个方法的名称。计算方法应简单地设置字段的值来计算每个记录中的自身。
 
 Danger
+危险
 
 self is a collection
+self是一个集合
 The object self is a recordset, i.e., an ordered collection of records. It supports the standard Python operations on collections, like len(self) and iter(self), plus extra set operations like recs1 + recs2.
+self是一个记录集对象，即记录的有序集合。它支持标准的Python操作集合，像Len（self）和iter（self），加上额外的设置操作recs1 + recs2。
+
 Iterating over self gives the records one by one, where each record is itself a collection of size 1. You can access/assign fields on single records by using the dot notation, like record.name.
+迭代self给出一个个记录，每个记录本身是一个集合的大小1。您可以访问指定使用点符号的单个record的字段，像record.name。
+
 import random
 from openerp import models, fields, api
 
@@ -963,7 +973,9 @@ class ComputedModel(models.Model):
         for record in self:
             record.name = str(random.randint(1, 1e6))
 Dependencies
+依赖
 The value of a computed field usually depends on the values of other fields on the computed record. The ORM expects the developer to specify those dependencies on the compute method with the decorator depends(). The given dependencies are used by the ORM to trigger the recomputation of the field whenever some of its dependencies have been modified:
+计算字段的值通常取决于计算记录上的其他字段的值。ORM预计开发商指定的计算方法与装饰depends()那些依赖。给定的依赖关系由ORM用来触发的领域重新计算，当其依赖已被修改：
 
 from openerp import models, fields, api
 
