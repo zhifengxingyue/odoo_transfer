@@ -865,10 +865,11 @@ openacademy/views/partner.xml
     </data>
 </openerp>
 Domains
+?
 In Odoo, Domains are values that encode conditions on records. A domain is a list of criteria used to select a subset of a model's records. Each criteria is a triple with a field name, an operator and a value.
-
+?Odoo,??????????????????????????????????????????,??????
 For instance, when used on the Product model the following domain selects all services with a unit price over 1000:
-
+??,???????????????????1000?????:
 [('product_type', '=', 'service'), ('unit_price', '>', 1000)]
 By default criteria are combined with an implicit AND. The logical operators & (AND), | (OR) and ! (NOT) can be used to explicitly combine criteria. They are used in prefix position (the operator is inserted before its arguments rather than between). For instance to select products "which are services OR have a unit price which is NOT between 1000 and 2000":
 
