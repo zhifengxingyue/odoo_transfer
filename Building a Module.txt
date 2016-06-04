@@ -867,7 +867,7 @@ openacademy/views/partner.xml
 Domains
 域
 In Odoo, Domains are values that encode conditions on records. A domain is a list of criteria used to select a subset of a model's records. Each criteria is a triple with a field name, an operator and a value.
-在Odoo，域是编码备案条件的值。域是用来选择模型的记录子集标准清单。每个标准是一个三与字段名称，运算符和值。
+在Odoo，域是设置字段条件的值。域是用来选择模型的记录子集标准清单。每个规则由三部分组成，包括字段名称，运算符和值。
 For instance, when used on the Product model the following domain selects all services with a unit price over 1000:
 例如，在产品型号使用时以下域选择具有单价超过1000的所有服务：
 [('product_type', '=', 'service'), ('unit_price', '>', 1000)]
